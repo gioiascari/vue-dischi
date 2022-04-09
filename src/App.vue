@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyHeader />
-    <MyMain :url="apiUrl" />
+    <MyMain />
   </div>
 </template>
 
@@ -15,27 +15,14 @@ export default {
     MyHeader,
     MyMain,
   },
-  data() {
-    return {
-      apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
-    };
-  },
 };
 </script>
 
 <style lang="scss">
 @import "@/style/utilities";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 #app {
   font-family: $main-font;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background-color: $bg-main;
 }
 </style>
