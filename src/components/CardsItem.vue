@@ -32,12 +32,14 @@ export default {
 }
 .text_card {
   color: $text-color-card;
+  padding-top: 15px;
   p {
     line-height: 0px;
   }
 }
 .font_size {
   font-size: 24px;
+  padding-top: 5px;
   font-weight: 700;
 }
 </style>
