@@ -15,6 +15,14 @@
 <script>
 export default {
   name: "MyHeader",
+  props: {
+    genreOut: Array,
+  },
+  data() {
+    return {
+      genreSelected: "",
+    };
+  },
 };
 </script>
 

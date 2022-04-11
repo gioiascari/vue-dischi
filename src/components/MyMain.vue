@@ -1,9 +1,10 @@
 <template>
   <div class="container padding_top">
     <div class="row text-center justify-content-between">
+      <SelectedBar @selectionChanged="getSelectionValue" />
       <CardsItem
         :song="item"
-        v-for="(item, i) in songs"
+        v-for="(item, i) in filteredAlbums()"
         :key="i"
         class="w_20 p-3"
       />
@@ -12,27 +13,49 @@
 </template>
 
 <script>
+/*author: (...)
+genre: (...)
+poster: (...)
+title: (...)
+year: (...) */
 import CardsItem from "@/components/CardsItem.vue";
+import SelectedBar from "@/components/SelectedBar.vue";
 import axios from "axios";
 export default {
   name: "MyMain",
+
   data() {
     return {
       songs: [],
+      selectionValue: "",
     };
   },
 
   components: {
     CardsItem,
+    SelectedBar,
   },
-  mounted() {
+  methods: {
+    getSelectionValue: function (selectedValue) {
+      this.selectionValue = selectedValue;
+    },
+    filteredAlbums: function () {
+      if (this.selectionValue === "") {
+        return this.songs;
+      }
+      const filteredArray = this.songs.filter((album) => {
+        return album.genre === this.selectionValue;
+      });
+
+      return filteredArray;
+    },
+  },
+  created: function () {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((response) => {
-        if (response.status === 200) {
-          this.songs = response.data.response;
-          console.log(this.songs);
-        }
+        this.songs = response.data.response;
+        console.log(this.songs);
       });
   },
 };
